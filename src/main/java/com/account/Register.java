@@ -11,33 +11,41 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Register {
     private WebDriver driver;
 
+    //Constructors
     public Register(ChromeDriver cDriver){
         this.driver = cDriver;
     }
     public Register(FirefoxDriver fDriver){
         this.driver = fDriver;
     }
-
     public Register(){
 
     }
 
+    //register methods
     public void register() throws InterruptedException {
         signIn(new LoadObjProp().getNavBarObj());
-        System.out.println("sign in called");
         Thread.sleep(2000);
         authenticate(new LoadObjProp().getAuthPageObj());
+        Thread.sleep(2000);
+        setDataToForm(new LoadObjProp().getRegPageObj());
     }
 
-    private void signIn(Properties propNav){
-        System.out.println("in method sign in before");
-        driver.findElement(By.xpath(propNav.getProperty("SignIn"))).click();
-        System.out.println("in method sign in after");
+    //Handling separate steps
+    //Click on sign in
+    private void signIn(Properties prop){
+        driver.findElement(By.xpath(prop.getProperty("SignIn"))).click();
     }
 
+    //authenticate
     private void authenticate(Properties prop){
         driver.findElement(By.xpath(prop.getProperty("CreateEmail"))).sendKeys("asdf@asdf.de");
         driver.findElement(By.xpath(prop.getProperty("CreateSubmit"))).click();
+    }
+
+    //set Data to Form
+    private void setDataToForm(Properties prop){
+
     }
 
 }
