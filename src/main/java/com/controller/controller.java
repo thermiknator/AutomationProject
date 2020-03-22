@@ -19,6 +19,6 @@ public class controller {
         }*/
         System.out.println(System.getProperty("user.dir") + "/Testdata.xlsx");
         ReadData rd = new ReadData();
-        rd.readData();
+        rd.readData(1, "Testdata");
     }
 }

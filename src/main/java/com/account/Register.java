@@ -1,8 +1,12 @@
 package com.account;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
 
+import com.util.ReadData;
 import com.loadObjects.LoadObjProp;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,7 +49,9 @@ public class Register {
 
     //set Data to Form
     private void setDataToForm(Properties prop){
-
+        Map<String, String> values = new LinkedHashMap<>();
+        ReadData rd = new ReadData();
+        values = rd.readData(1, "Testdata");
     }
 
 }

@@ -6,17 +6,13 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.*;
 
 public class ReadData {
     Map<String,String> valueMap = new LinkedHashMap<>();
-    public void readData() {
+    public Map<String,String> readData(int row, String nameOfExcel) {
         try {
-            FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir") + "/Testdata.xlsx"));
+            FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir") + "/" + nameOfExcel + ".xlsx"));
 
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook = WorkbookFactory.create(file);
@@ -26,41 +22,26 @@ public class ReadData {
 
             //Get specified row and store the values in a map
             Row rowHeader = sheet.getRow(0);
-            Row rowValues = sheet.getRow(1);
+            Row rowValues = sheet.getRow(row);
             Iterator<Cell> cellIteratorValues = rowValues.cellIterator();
             while(cellIteratorValues.hasNext()) {
                 Cell cell = cellIteratorValues.next();
                 String header = rowHeader.getCell(cell.getColumnIndex()).getStringCellValue();
-                System.out.println(header);
-                System.out.println(cell.getStringCellValue());
-                valueMap.put(header, cell.getStringCellValue());
-                System.out.println(valueMap.toString());
-            }
-            /*
-            //Iterate through each rows one by one
-            Iterator<Row> rowIterator = sheet.iterator();
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-                //For each row, iterate through all the columns
-                Iterator<Cell> cellIterator = row.cellIterator();
-
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    //Check the cell type and format accordingly
-                    switch (cell.getCellType()) {
-                        case NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "t");
-                            break;
-                        case STRING:
-                            System.out.print(cell.getStringCellValue() + "t");
-                            break;
-                    }
+                CellType cellType = cell.getCellType();
+                switch (cellType) {
+                    case NUMERIC:
+                        String value = Double.toString(cell.getNumericCellValue()).replace(".0", "");
+                        valueMap.put(header, value);
+                        break;
+                    case STRING:
+                        valueMap.put(header, cell.getStringCellValue());
+                        break;
                 }
-                System.out.println("");
-            }*/
+            }
             file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return valueMap;
     }
 }
