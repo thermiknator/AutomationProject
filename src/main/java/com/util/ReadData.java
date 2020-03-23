@@ -30,7 +30,7 @@ public class ReadData {
                 CellType cellType = cell.getCellType();
                 switch (cellType) {
                     case NUMERIC:
-                        String value = Double.toString(cell.getNumericCellValue()).replace(".0", "");
+                        String value = Double.toString((int)cell.getNumericCellValue()).replace(".0", "");
                         valueMap.put(header, value);
                         break;
                     case STRING:
