@@ -1,57 +1,46 @@
 package com.account;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Properties;
 
-import com.util.ReadData;
-import com.loadObjects.LoadObjProp;
-
+import com.util.TestcaseProperties;
 import com.util.VerifyMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Register {
-    private WebDriver driver;
+public class Register extends TestcaseProperties {
     private boolean testValidation;
-    Map<String, String> values = new LinkedHashMap<>();
-    ReadData rd = new ReadData();
+
 
     //Constructors
-    public Register(ChromeDriver cDriver, boolean testValidation){
-        this.driver = cDriver;
+    public Register(WebDriver driver, boolean testValidation){
+        this.driver = driver;
         this.testValidation = testValidation;
     }
-    public Register(FirefoxDriver fDriver, boolean testValidation){
-        this.driver = fDriver;
-        this.testValidation = testValidation;
-    }
+
     public Register(){
 
     }
 
     //register steps
     public void register() throws InterruptedException {
-        signIn(new LoadObjProp().getNavBarObj());
+        signIn(propNav);
         Thread.sleep(2000);
-        authenticate(new LoadObjProp().getAuthPageObj());
+        authenticate(propAuth);
         Thread.sleep(2000);
-        setDataToForm(new LoadObjProp().getRegPageObj(), testValidation);
+        setDataToForm(propReg, testValidation);
     }
 
     //Handling separate steps
     //Click on sign in
-    private void signIn(Properties prop){
+    public void signIn(Properties prop){
         driver.findElement(By.xpath(prop.getProperty("SignIn"))).click();
     }
 
     //authenticate
     private void authenticate(Properties prop){
         values = rd.readData(3, "Testdata");
-        driver.findElement(By.xpath(prop.getProperty("CreateEmail"))).sendKeys(values.get("Email"));
+        driver.findElement(By.xpath(prop.getProperty("CreateEmail"))).sendKeys(eMailPrefix + values.get("Email"));
         driver.findElement(By.xpath(prop.getProperty("CreateSubmit"))).click();
     }
 
