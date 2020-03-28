@@ -36,6 +36,13 @@ public class LoadObjProp {
         return prop;
     }
 
+    //get all objects of search
+    public Properties getSearchObj(){
+        pathToProperties = "searchObj.properties";
+        loadProperties(pathToProperties);
+        return prop;
+    }
+
 
     //load properties
     private Properties loadProperties(String pathToProperties){

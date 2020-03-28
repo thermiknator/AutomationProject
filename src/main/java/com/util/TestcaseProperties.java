@@ -13,6 +13,7 @@ public abstract class TestcaseProperties {
     protected Properties propNav = new LoadObjProp().getNavBarObj();
     protected Properties propAuth = new LoadObjProp().getAuthPageObj();
     protected Properties propReg = new LoadObjProp().getRegPageObj();
+    protected Properties propSearch = new LoadObjProp().getSearchObj();
     protected WebDriver driver;
     protected String eMailPrefix = new RandomGenerator(3).getRandomString();
     protected Map<String, String> values = new LinkedHashMap<>();

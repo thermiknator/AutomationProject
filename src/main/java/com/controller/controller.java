@@ -1,6 +1,7 @@
 package com.controller;
 import com.account.LoginLogout;
 import com.loadObjects.LoadObjProp;
+import com.search.Search;
 import com.start.DriverManager;
 import com.start.DriverManagerFactory;
 import com.start.DriverType;
@@ -20,7 +21,7 @@ public class controller {
         WebDriver driver = driverManager.getDriver();
         driver.get("http://automationpractice.com/index.php");
 
-
+        /*
         //Register new User; set Flag to true and check if validation works
         Register reg = new Register(driver, false);
         try {
@@ -33,7 +34,16 @@ public class controller {
         LoginLogout log = new LoginLogout(driver);
         log.login(1, "Testdata");
         log.logout();
-        log.loginWithWrongCredentials();
+        log.loginWithWrongCredentials();*/
+
+        //Search
+        Search search = new Search(driver);
+        try {
+            boolean worksFine = search.searchTest();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
 
     }
 }
