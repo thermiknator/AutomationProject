@@ -2,6 +2,7 @@ package com.controller;
 import com.account.LoginLogout;
 import com.loadObjects.LoadObjProp;
 import com.search.Search;
+import com.socializing.Review;
 import com.start.DriverManager;
 import com.start.DriverManagerFactory;
 import com.start.DriverType;
@@ -34,7 +35,7 @@ public class controller {
         LoginLogout log = new LoginLogout(driver);
         log.login(1, "Testdata");
         log.logout();
-        log.loginWithWrongCredentials();*/
+        log.loginWithWrongCredentials();
 
         //Search
         Search search = new Search(driver);
@@ -42,8 +43,22 @@ public class controller {
             boolean worksFine = search.searchTest();
         }catch(InterruptedException e){
             e.printStackTrace();
+        }*/
+
+        //Review
+        Review review = new Review(driver);
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
-
-
+        LoginLogout login = new LoginLogout(driver);
+        login.login(1, "Testdata");
+        driver.get("http://automationpractice.com/index.php");
+        try {
+            review.sendReview();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }

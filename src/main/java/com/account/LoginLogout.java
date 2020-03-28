@@ -1,12 +1,10 @@
 package com.account;
 
-import com.loadObjects.LoadObjProp;
 import com.util.TestcaseProperties;
 import com.util.VerifyMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Properties;
 
 public class LoginLogout extends TestcaseProperties {
     private String username;
@@ -47,7 +45,12 @@ public class LoginLogout extends TestcaseProperties {
     }
 
     private void navAndSetText(String username, String password){
-        driver.findElement(By.xpath(propNav.getProperty("SignIn"))).click();
+        try {
+            driver.findElement(By.xpath(propNav.getProperty("SignIn"))).click();
+        }catch(Exception e){
+            e.printStackTrace();
+            driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        }
         driver.findElement(By.xpath(propAuth.getProperty("UserEmail"))).sendKeys(username);
         driver.findElement(By.xpath(propAuth.getProperty("UserPW"))).sendKeys(password);
         driver.findElement(By.xpath(propAuth.getProperty("LoginSubmit"))).click();

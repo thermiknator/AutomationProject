@@ -14,6 +14,7 @@ public abstract class TestcaseProperties {
     protected Properties propAuth = new LoadObjProp().getAuthPageObj();
     protected Properties propReg = new LoadObjProp().getRegPageObj();
     protected Properties propSearch = new LoadObjProp().getSearchObj();
+    protected Properties propItem = new LoadObjProp().getItemObj();
     protected WebDriver driver;
     protected String eMailPrefix = new RandomGenerator(3).getRandomString();
     protected Map<String, String> values = new LinkedHashMap<>();

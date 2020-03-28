@@ -5,7 +5,13 @@ import org.openqa.selenium.WebDriver;
 
 public class VerifyMethods {
     private boolean isPresent;
+    private int numberOfItems;
     private WebDriver driver;
+
+    public VerifyMethods(WebDriver driver, String xpath, int numberOfItems){
+        this.driver = driver;
+        numberOfItems = countElements(xpath, numberOfItems);
+    }
 
     public VerifyMethods(WebDriver driver, String xpath, String method){
         this.driver = driver;
@@ -64,5 +70,9 @@ public class VerifyMethods {
 
     public boolean isPresent() {
         return isPresent;
+    }
+
+    private int countElements(String xpath, int numberOfItems){
+        return driver.findElements(By.xpath(xpath)).size();
     }
 }

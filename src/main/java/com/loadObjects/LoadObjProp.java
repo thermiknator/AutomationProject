@@ -43,6 +43,13 @@ public class LoadObjProp {
         return prop;
     }
 
+    //get all objects of item
+    public Properties getItemObj(){
+        pathToProperties = "itemObj.properties";
+        loadProperties(pathToProperties);
+        return prop;
+    }
+
 
     //load properties
     private Properties loadProperties(String pathToProperties){
