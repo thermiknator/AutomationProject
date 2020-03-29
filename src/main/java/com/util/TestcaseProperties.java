@@ -1,8 +1,6 @@
 package com.util;
 
 import com.loadObjects.LoadObjProp;
-import com.util.RandomGenerator;
-import com.util.ReadData;
 import org.openqa.selenium.WebDriver;
 
 import java.util.LinkedHashMap;

@@ -1,20 +1,11 @@
 package com.controller;
-import com.account.LoginLogout;
-import com.loadObjects.LoadObjProp;
-import com.search.Search;
-import com.socializing.Review;
+import com.share.FacebookTest;
+import com.share.ShareManager;
 import com.start.DriverManager;
 import com.start.DriverManagerFactory;
 import com.start.DriverType;
-import com.start.StartBrowser;
-import com.account.Register;
-import com.util.RandomGenerator;
-import com.util.ReadData;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.Properties;
 
 public class controller {
     public static void main(String[] args){
@@ -43,7 +34,7 @@ public class controller {
             boolean worksFine = search.searchTest();
         }catch(InterruptedException e){
             e.printStackTrace();
-        }*/
+        }
 
         //Review
         Review review = new Review(driver);
@@ -59,6 +50,12 @@ public class controller {
             review.sendReview();
         }catch(InterruptedException e){
             e.printStackTrace();
-        }
+        }*/
+
+        //Share Product
+
+        ShareManager sm = new FacebookTest(driver);
+        sm.startTest();
+
     }
 }
