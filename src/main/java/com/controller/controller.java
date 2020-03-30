@@ -1,5 +1,5 @@
 package com.controller;
-import com.share.FacebookTest;
+import com.share.ShareEnums;
 import com.share.ShareManager;
 import com.start.DriverManager;
 import com.start.DriverManagerFactory;
@@ -54,7 +54,7 @@ public class controller {
 
         //Share Product
 
-        ShareManager sm = new FacebookTest(driver);
+        ShareManager sm = new ShareManager(ShareEnums.PINTEREST, driver);
         sm.startTest();
 
     }
