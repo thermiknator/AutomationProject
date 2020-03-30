@@ -3,6 +3,7 @@ package com.socializing;
 import com.util.TestcaseProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class Review extends TestcaseProperties {
         this.driver = driver;
     }
 
+    @Test
     public void sendReview() throws InterruptedException {
         driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
         driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();

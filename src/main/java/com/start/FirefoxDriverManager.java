@@ -20,10 +20,11 @@ public class FirefoxDriverManager extends DriverManager{
 
     @Override
     protected void startService() {
+        String pathname = getPathName();
         if (null == gService){
             try{
                 gService = new GeckoDriverService.Builder()
-                        .usingDriverExecutable(new File("src/main/resources/Drivers/geckodriver"))
+                        .usingDriverExecutable(new File(pathname))
                         .usingAnyFreePort()
                         .build();
                 gService.start();
@@ -43,5 +44,13 @@ public class FirefoxDriverManager extends DriverManager{
         FirefoxOptions options = new FirefoxOptions()
                 .setProfile(new FirefoxProfile());
         driver = new FirefoxDriver(gService, options);
+    }
+
+    private String getPathName(){
+        String ffdriverPath = "src/main/resources/Drivers/geckodriver";
+        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+            ffdriverPath += ".exe";
+        }
+        return ffdriverPath;
     }
 }

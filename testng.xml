@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+    <suite name="All Test Suite">
+        <test verbose="2" preserve-order="true" name="Chrome">
+        <parameter name = "driverType" value=""/>
+            <classes>
+                <class name="com.account.LoginLogout">
+                    <methods>
+                        <parameter name="row" value="1"></parameter>
+                        <parameter name="pathToData" value="Testdata"></parameter>
+                        <include name="login"/>
+                        <include name="logout"/>
+                        <include name="loginWithWrongCredentials"/>
+                    </methods></class><class name="com.search.Search">
+                    <methods>
+                        <include name="searchTest"/>
+                    </methods>
+            </class>
+                <class name="com.share.ShareManager">
+                    <methods>
+                        <include name="startTest"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+        <test verbose="2" preserve-order="true" name="Firefox">
+            <parameter name = "driverType" value="Firefox"/>
+            <classes>
+                <class name="com.account.LoginLogout">
+                    <methods>
+                        <parameter name="row" value="1"></parameter>
+                        <parameter name="pathToData" value="Testdata"></parameter>
+                        <include name="login"/>
+                        <include name="logout"/>
+                        <include name="loginWithWrongCredentials"/>
+                    </methods></class><class name="com.search.Search">
+                <methods>
+                    <include name="searchTest"/>
+                </methods>
+            </class>
+                <class name="com.share.ShareManager">
+                    <methods>
+                        <include name="startTest"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+    </suite>

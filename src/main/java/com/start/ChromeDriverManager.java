@@ -13,10 +13,11 @@ public class ChromeDriverManager extends DriverManager {
 
     @Override
     public void startService() {
+        String pathname = getPathName();
         if (null == chService) {
             try {
                 chService = new ChromeDriverService.Builder()
-                        .usingDriverExecutable(new File("src/main/resources/Drivers/chromedriver"))
+                        .usingDriverExecutable(new File(pathname))
                         .usingAnyFreePort()
                         .build();
                 chService.start();
@@ -40,6 +41,14 @@ public class ChromeDriverManager extends DriverManager {
        // capabilities.setCapability(ChromeOptions.CAPABILITY, options);
        // driver = new ChromeDriver(chService, capabilities);
         driver = new ChromeDriver(chService, options);
+    }
+
+    private String getPathName(){
+        String chromedriverPath = "src/main/resources/Drivers/chromedriver";
+        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+            chromedriverPath += ".exe";
+        }
+        return chromedriverPath;
     }
 
 }

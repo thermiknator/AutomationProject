@@ -1,9 +1,13 @@
 package com.account;
 
+import com.start.DriverManager;
+import com.start.DriverManagerFactory;
+import com.start.DriverType;
 import com.util.TestcaseProperties;
 import com.util.VerifyMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 
 
 public class LoginLogout extends TestcaseProperties {
@@ -15,7 +19,10 @@ public class LoginLogout extends TestcaseProperties {
     }
     public LoginLogout(){}
 
+
     //Login
+    @Test
+    @Parameters({"row", "pathToData"})
     public void login(int row, String pathToData){
         values = rd.readData(row, pathToData);
         username = values.get("Email");
@@ -27,6 +34,7 @@ public class LoginLogout extends TestcaseProperties {
     }
 
     //Logout
+    @Test
     public void logout(){
         driver.findElement(By.xpath(propNav.getProperty("SignOut"))).click();
         if(new VerifyMethods(driver, propNav.getProperty("SignIn"), "verifyElementIsPresent").isPresent()){
@@ -35,6 +43,7 @@ public class LoginLogout extends TestcaseProperties {
     }
 
     //Login with wrong credentials
+    @Test
     public void loginWithWrongCredentials(){
         username = "test@test.com";
         password = "test";
@@ -43,6 +52,7 @@ public class LoginLogout extends TestcaseProperties {
             System.out.println("Alert was triggered");
         }
     }
+
 
     private void navAndSetText(String username, String password){
         try {

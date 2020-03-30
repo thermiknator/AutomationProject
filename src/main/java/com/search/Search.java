@@ -4,6 +4,7 @@ import com.util.TestcaseProperties;
 import com.util.VerifyMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class Search extends TestcaseProperties {
         this.driver = driver;
     }
 
+    @Test
     public boolean searchTest() throws InterruptedException {
         boolean worksFine = false;
         values = rd.readData(1, "SearchTerms");

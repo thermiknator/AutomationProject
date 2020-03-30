@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class controller {
     public static void main(String[] args){
-        DriverManager driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+        DriverManager driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
         WebDriver driver = driverManager.getDriver();
         driver.get("http://automationpractice.com/index.php");
 

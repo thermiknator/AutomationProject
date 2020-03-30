@@ -3,6 +3,7 @@ package com.share;
 import com.util.TestcaseProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 
@@ -18,6 +19,7 @@ public class ShareManager extends TestcaseProperties {
 
     }
 
+    @Test
     public void startTest(){
         values = rd.readData(1, "SocMedCreds");
         String username = values.get("username");
