@@ -3,6 +3,8 @@ package com.share;
 import com.util.TestcaseProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -19,20 +21,26 @@ public class ShareManager extends TestcaseProperties {
 
     }
 
-    @Test
-    public void startTest(){
-        values = rd.readData(1, "SocMedCreds");
-        String username = values.get("username");
-        String password = values.get("password");
-        String currentWindow = driver.getWindowHandle();
-        driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
-        driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
-        clickOnButton(type);
-        changeWindow();
-        interact(type, username, password);
-        driver.close();
-        driver.switchTo().window(currentWindow);
-        driver.get("http://automationpractice.com/index.php");
+    @Test(dataProvider = "data-provider", dataProviderClass = ShareEnums.class)
+    public void startTest(int row, String testData, ShareEnums type){
+        try {
+            values = rd.readData(row, testData);
+            String username = values.get("username");
+            String password = values.get("password");
+            String currentWindow = driver.getWindowHandle();
+            driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
+            //driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
+            Thread.sleep(1000);
+            clickOnButton(type);
+            changeWindow();
+            interact(type, username, password);
+            driver.close();
+            driver.switchTo().window(currentWindow);
+            driver.get("http://automationpractice.com/index.php");
+        }catch (Exception e){
+            System.out.println("Test failed at : " + driver.getCurrentUrl());
+            e.printStackTrace();
+        }
     }
 
     private void changeWindow(){
@@ -90,7 +98,7 @@ public class ShareManager extends TestcaseProperties {
         }
     }
 
-    private void successMessage(ShareEnums type, boolean success){
+    private void successMessage (ShareEnums type, boolean success){
         String message = "Test of " + type.toString() + " at " + driver.getCurrentUrl() + " at " + new Date().getTime() +
                 " is success: " + success;
         System.out.println(message);

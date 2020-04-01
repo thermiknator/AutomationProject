@@ -57,13 +57,17 @@ public class LoginLogout extends TestcaseProperties {
     private void navAndSetText(String username, String password){
         try {
             driver.findElement(By.xpath(propNav.getProperty("SignIn"))).click();
+            driver.findElement(By.xpath(propAuth.getProperty("UserEmail"))).sendKeys(username);
+            driver.findElement(By.xpath(propAuth.getProperty("UserPW"))).sendKeys(password);
+            driver.findElement(By.xpath(propAuth.getProperty("LoginSubmit"))).click();
         }catch(Exception e){
             e.printStackTrace();
             driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+            driver.findElement(By.xpath(propAuth.getProperty("UserEmail"))).sendKeys(username);
+            driver.findElement(By.xpath(propAuth.getProperty("UserPW"))).sendKeys(password);
+            driver.findElement(By.xpath(propAuth.getProperty("LoginSubmit"))).click();
         }
-        driver.findElement(By.xpath(propAuth.getProperty("UserEmail"))).sendKeys(username);
-        driver.findElement(By.xpath(propAuth.getProperty("UserPW"))).sendKeys(password);
-        driver.findElement(By.xpath(propAuth.getProperty("LoginSubmit"))).click();
+
     }
 
 }

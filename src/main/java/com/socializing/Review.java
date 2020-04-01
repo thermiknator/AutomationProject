@@ -1,8 +1,10 @@
 package com.socializing;
 
+import com.account.LoginLogout;
 import com.util.TestcaseProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -16,9 +18,15 @@ public class Review extends TestcaseProperties {
     }
 
     @Test
-    public void sendReview() throws InterruptedException {
+    @Parameters({"row", "pathToData"})
+    public void sendReview(int row, String pathToData) throws InterruptedException {
+        new LoginLogout(driver).login(row, pathToData);
+        driver.get("http://automationpractice.com/index.php");
+
         driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
-        driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
+        if(driver.findElements(By.xpath(propItem.getProperty("ItemTitle"))).size() > 0) {
+            driver.findElement(By.xpath(propItem.getProperty("ItemTitle"))).click();
+        }
         Thread.sleep(1000);
         driver.findElement(By.xpath(propItem.getProperty("ItemReviewButton"))).click();
         Thread.sleep(1000);

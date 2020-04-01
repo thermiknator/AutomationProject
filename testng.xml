@@ -11,14 +11,28 @@
                         <include name="login"/>
                         <include name="logout"/>
                         <include name="loginWithWrongCredentials"/>
-                    </methods></class><class name="com.search.Search">
+                    </methods>
+                </class>
+                <class name="com.account.Register">
+                    <methods>
+                        <include name="register"/>
+                    </methods>
+                </class>
+                <class name="com.search.Search">
                     <methods>
                         <include name="searchTest"/>
                     </methods>
-            </class>
+                </class>
                 <class name="com.share.ShareManager">
                     <methods>
                         <include name="startTest"/>
+                    </methods>
+                </class>
+                <class name="com.socializing.Review">
+                    <methods>
+                        <parameter name="row" value="1"></parameter>
+                        <parameter name="pathToData" value="Testdata"></parameter>
+                        <include name="sendReview"/>
                     </methods>
                 </class>
             </classes>
@@ -33,11 +47,13 @@
                         <include name="login"/>
                         <include name="logout"/>
                         <include name="loginWithWrongCredentials"/>
-                    </methods></class><class name="com.search.Search">
-                <methods>
-                    <include name="searchTest"/>
-                </methods>
-            </class>
+                    </methods>
+                </class>
+                <class name="com.search.Search">
+                    <methods>
+                        <include name="searchTest"/>
+                    </methods>
+                </class>
                 <class name="com.share.ShareManager">
                     <methods>
                         <include name="startTest"/>

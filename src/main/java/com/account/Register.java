@@ -7,6 +7,9 @@ import com.util.VerifyMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 public class Register extends TestcaseProperties {
     private boolean testValidation;
@@ -22,8 +25,14 @@ public class Register extends TestcaseProperties {
 
     }
 
+    @DataProvider (name = "data")
+    public static Object[][] data() {
+        return new Object[][]{ {true}, {false} };
+    }
+
     //register steps
-    public void register() throws InterruptedException {
+    @Test(dataProvider = "data")
+    public void register(boolean testValidation) throws InterruptedException {
         signIn(propNav);
         Thread.sleep(2000);
         authenticate(propAuth);
@@ -91,7 +100,7 @@ public class Register extends TestcaseProperties {
             driver.findElement(By.xpath(prop.getProperty("AddZip"))).sendKeys("1234");
             driver.findElement(By.xpath(prop.getProperty("Register"))).click();
             Thread.sleep(1000);
-            assert (new VerifyMethods((WebDriver)driver, prop.getProperty("ZipAlert"), "verifyElementIsPresent").isPresent()==true);
+            assert (new VerifyMethods(driver, prop.getProperty("ZipAlert"), "verifyElementIsPresent").isPresent()==true);
         }
         driver.findElement(By.xpath(prop.getProperty("AddInfo"))).sendKeys(values.get("Additional"));
         driver.findElement(By.xpath(prop.getProperty("AddPhone"))).sendKeys(values.get("Phone"));
@@ -110,7 +119,7 @@ public class Register extends TestcaseProperties {
             country.selectByValue("");
             driver.findElement(By.xpath(prop.getProperty("Register"))).click();
             Thread.sleep(1000);
-            assert (new VerifyMethods((WebDriver)driver, prop.getProperty("CountryAlert"), "verifyElementIsPresent").isPresent()==true);
+            assert (new VerifyMethods(driver, prop.getProperty("CountryAlert"), "verifyElementIsPresent").isPresent()==true);
         }
 
         //finish Registration
@@ -118,7 +127,7 @@ public class Register extends TestcaseProperties {
         driver.findElement(By.xpath(prop.getProperty("Register"))).click();
 
         //Verify Registration was successfull
-        assert (new VerifyMethods((WebDriver)driver, prop.getProperty("Success"), "verifyElementIsPresent").isPresent()==true);
+        assert (new VerifyMethods(driver, prop.getProperty("Success"), "verifyElementIsPresent").isPresent()==true);
         System.out.println("Successfully registered");
     }
 

@@ -1,4 +1,5 @@
 package com.controller;
+import com.account.LoginLogout;
 import com.share.ShareEnums;
 import com.share.ShareManager;
 import com.start.DriverManager;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class controller {
     public static void main(String[] args){
-        DriverManager driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
+        DriverManager driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         WebDriver driver = driverManager.getDriver();
         driver.get("http://automationpractice.com/index.php");
 
@@ -20,14 +21,14 @@ public class controller {
             reg.register();
         }catch(InterruptedException e){
             e.printStackTrace();
-        }
+        }*/
 
         //Login and check if success, verify validation
         LoginLogout log = new LoginLogout(driver);
         log.login(1, "Testdata");
         log.logout();
         log.loginWithWrongCredentials();
-
+    /*
         //Search
         Search search = new Search(driver);
         try {
@@ -55,7 +56,7 @@ public class controller {
         //Share Product
 
         ShareManager sm = new ShareManager(ShareEnums.PINTEREST, driver);
-        sm.startTest();
+        //sm.startTest();
 
     }
 }
