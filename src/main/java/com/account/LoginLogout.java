@@ -1,8 +1,5 @@
 package com.account;
 
-import com.start.DriverManager;
-import com.start.DriverManagerFactory;
-import com.start.DriverType;
 import com.util.TestcaseProperties;
 import com.util.VerifyMethods;
 import org.openqa.selenium.By;
