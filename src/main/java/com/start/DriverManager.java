@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 public abstract class DriverManager {
 
     protected WebDriver driver;
+    protected String urlRemoteMachine = "http://192.168.178.39:5566/wd/hub";
     protected abstract void startService();
     protected abstract void stopService();
     protected abstract void createDriver();

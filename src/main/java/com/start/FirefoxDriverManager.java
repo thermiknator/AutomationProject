@@ -12,12 +12,6 @@ public class FirefoxDriverManager extends DriverManager{
 
     private GeckoDriverService gService;
 
-    private FirefoxDriver startFirefoxBrowser(){
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/Drivers/geckodriver");
-        FirefoxDriver fDriver = new FirefoxDriver();
-        return fDriver;
-    };
-
     @Override
     protected void startService() {
         String pathname = getPathName();
@@ -36,7 +30,9 @@ public class FirefoxDriverManager extends DriverManager{
 
     @Override
     protected void stopService() {
-
+        if(null != gService && gService.isRunning()){
+            gService.stop();
+        }
     }
 
     @Override

@@ -13,6 +13,12 @@ public class DriverManagerFactory {
             case FIREFOX:
                 driverManager = new FirefoxDriverManager();
                 break;
+            case REMOTECHROME:
+                driverManager = new RemoteChromeDriverManager();
+                break;
+            case REMOTEFIREFOX:
+                driverManager = new RemoteFirefoxDriverManager();
+                break;
             default:
                 driverManager = new SafariDriverManager();
                 break;

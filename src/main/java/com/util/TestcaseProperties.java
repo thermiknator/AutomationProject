@@ -27,6 +27,7 @@ public abstract class TestcaseProperties {
     @BeforeClass
     @Parameters("driverType")
     public void startUp(String driverType){
+        System.out.println("Das ist der String: " + driverType);
         DriverType type;
         switch (driverType.toLowerCase()){
             case "firefox":
@@ -35,8 +36,13 @@ public abstract class TestcaseProperties {
             case "ie11":
                 type = DriverType.IE;
             break;
+            case "remotechrome":
+                type = DriverType.REMOTECHROME;
+                System.out.println("Das ist der Remote webdriver: " + type.toString());
+                break;
             default:
                 type = DriverType.CHROME;
+                System.out.println("Das ist der default webdriver: " + type.toString());
             break;
         }
         driverManager = DriverManagerFactory.getManager(type);
