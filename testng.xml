@@ -41,7 +41,7 @@
             </classes>
         </test>
         <test verbose="2" preserve-order="true" name="Firefox">
-            <parameter name = "driverType" value="Firefox"/>
+            <parameter name = "driverType" value="RemoteFirefox"/>
             <classes>
                 <class name="com.account.LoginLogout">
                     <methods>
